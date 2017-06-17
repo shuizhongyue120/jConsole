@@ -221,6 +221,7 @@ jConsole.prototype = {
                 tag = e.target || e.srcElement;
             var pY = e.pageY || e.y;
             console.log("pY:" + pY);
+            bdH = bdDoms[0].offsetHeight;
             document.onmousemove = function(e) {
                 var e = e || window.event;
                 var pY2 = e.pageY || e.y;
