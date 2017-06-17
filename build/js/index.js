@@ -1,3 +1,75 @@
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /**
  * a console tools for brower cannot console 
  * you can print log and look the cookies ,request .localstorge etc.
@@ -27,7 +99,7 @@ var CONS = {
 var styleStr = ".f-t-idn{text-indent:20px}.f-t-idn2{text-indent:40px}.t-con-pop{position:fixed;width:100%;bottom:0;left:0;background:#f8f8f8;font-size:14px;color:#3a4149;z-index:10000}.t-con-pop div,span,p,a{margin:0;padding:0}.nav-item{height:28px;line-height:28px;display:inline-block;width:120px;text-align:center}.nav-item:hover{cursor:pointer;background:#d1d2d1}.nav-act{border-bottom:solid 2px #2196F3}.nav-close{font-size:20px;float:right;margin-right:10px;cursor:pointer}.body-item{height:300px;overflow-y:scroll}.t-con-top{border-top:solid 1px #b6b6b6;height:4px;cursor:n-resize;background:#e0e2e7}.t-con-nav{background:#e0e2e7}.t-net-nav{display:inline-block;width:160px;padding:0 5px;text-align:cnter;border-left:1px solid #d5d3d3}.j-stor-ipt{width:120px}.j-stor-del{color:red;float:right;cursor:pointer}.t-net-item,.t-tim-item{display:inline-block;width:160px;max-width:960px;padding:0 5px;border-left:1px solid #d5d3d3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}.msg-item{border-bottom:solid 1px #d5d3d3;min-height:20px;line-height:20px;padding-left:10px}.u-ipt{width:120px}.u-ipt:focus{outline:none}.msg-info{background:#7bf77b}.msg-warn{background:#ffe400}.msg-err{background:#ED6666}";
 //var tpl = '<div id=j-con-nav class=t-con-nav><span class="nav-item nav-act" idx=console>console</span><span class=nav-item idx=cookie>cookie</span><span id=j-item-search class=nav-item style="display: none;"><input type=text id=j-ck-search class=u-ipt placeholder="查询cookie,回车提交"></span><span class=nav-close idx=close>x</span></div><div id=j-con-console class="body-item j-con-body"></div><div id=j-con-cookie class="body-item j-con-body" style="display: none;"></div>';
 var tpl = '<div id=j-con-top class=t-con-top></div><div id=j-con-nav class=t-con-nav><span class="nav-item nav-act" idx=console>console</span><span class=nav-item idx=cookie>cookie</span><span class=nav-close idx=close>x</span><span class=nav-item id=j-nav-net idx=network style="display: none;">network</span><span class=nav-item id=j-nav-timing idx=timing style="display: none;">timing</span><span class=nav-item id=j-nav-storage idx=storage>localStorage</span><span id=j-item-search style="display: none;"><input type=text id=j-ck-search class=u-ipt placeholder="查询cookie,回车提交"></span></div><div id=j-con-console class="body-item j-con-body"></div><div id=j-con-cookie class="body-item j-con-body" style="display: none;"></div><div id=j-con-network class="body-item j-con-body" style="display: none;"></div><div id=j-con-timing class="body-item j-con-body" style="display: none;"></div><div id=j-con-storage class="body-item j-con-body" style="display: none;"></div>';
-var util = require("./util.js");
+var util = __webpack_require__(1);
 
 function jConsole(cfg) {
     if (this instanceof jConsole) {
@@ -351,3 +423,171 @@ module.exports = {
     error: error,
     info: info
 };
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+function log(msg) {
+    console.log && console.log(msg);
+}
+
+function extend(destination, source) {
+    if (!destination || !source) {
+        this.log("extend param invalid!");
+        return {};
+    }
+    for (property in source) {
+        if (source.hasOwnProperty(property)) {
+            destination[property] = source[property];
+        }
+    }
+
+    return destination;
+}
+
+function loadCssCode(code) {
+    if (!code) {
+        this.log("loadCssCode param invalid!");
+        return;
+    }
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.rel = 'stylesheet';
+    try {
+        //for Chrome Firefox Opera Safari
+        style.appendChild(document.createTextNode(code));
+    } catch (ex) {
+        //for IE
+        style.styleSheet.cssText = code;
+    }
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(style);
+}
+
+function hideDoms(doms) {
+    if (!doms) {
+        this.log("hideDoms param invalid!");
+        return;
+    }
+    for (var i = 0, len = doms.length; i < len; i++) {
+        doms[i].style.display = "none";
+    }
+}
+
+function hideDom(dom) {
+    if (!dom) {
+        this.log("hideDom param invalid!");
+        return;
+    }
+    dom.style.display = "none";
+}
+
+function showDom(dom, type) {
+    if (!dom) {
+        this.log("showDom param invalid!");
+        return;
+    }
+    dom.style.display = !type ? "block" : "inline-block";
+}
+
+function hasCls(dom, cls) {
+    if (!dom || !cls) {
+        this.log("hasCls param invalid!");
+        return;
+    }
+    var clsList = dom.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+    return !!clsList;
+}
+
+function addCls(dom, cls) {
+    if (!dom || !cls) {
+        this.log("addCls param invalid!");
+        return;
+    }
+    if (this.hasCls(dom, cls)) {
+        return;
+    }
+    dom.className += " " + cls;
+}
+
+function removeCls(dom, cls) {
+    if (!dom || !cls) {
+        this.log("removeCls param invalid!");
+        return;
+    }
+    if (this.hasCls(dom, cls)) {
+        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+        dom.className = dom.className.replace(reg, ' ');
+    }
+}
+
+function removeClsDoms(doms, cls) {
+    if (!doms || !cls) {
+        this.log("removeClsDoms param invalid!");
+        return;
+    }
+    for (var i = 0, len = doms.length; i < len; i++) {
+        var dom = doms[i];
+        if (this.hasCls(dom, cls)) {
+            var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+            dom.className = dom.className.replace(reg, ' ');
+        }
+    }
+}
+
+function getCookie(name) {
+    return decodeURIComponent((document.cookie.match(new RegExp("(^" + name + "| " + name + ")=([^;]*)")) == null) ? "" : RegExp.$2);
+}
+
+function addEvent(dom, type, handler) {
+    if (!dom || !type || !handler) {
+        util.log("Event add param invalid!");
+        return;
+    }
+    if (window.addEventListener) {
+        dom.addEventListener(type, handler);
+        return;
+    }
+    dom.attachEvent("on" + type, handler);
+}
+
+function getElById(par, idStr) {
+    par = par || document;
+    return par.getElementById(idStr);
+}
+
+
+module.exports = {
+    extend: extend,
+    loadCssCode: loadCssCode,
+    hideDoms: hideDoms,
+    hideDom: hideDom,
+    showDom: showDom,
+    hasCls: hasCls,
+    addCls: addCls,
+    removeCls: removeCls,
+    removeClsDoms: removeClsDoms,
+    getCookie: getCookie,
+    addEvent: addEvent,
+    getElById: getElById
+};
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+    var jConsole = __webpack_require__(0);
+
+    jConsole.log("log jConsole");
+    jConsole.info("info jConsole");
+    jConsole.warn("warn jConsole");
+    jConsole.warn("warn jConsole");
+    jConsole.error("error jConsole");
+    jConsole.error("error324234 jConsole");
+
+
+/***/ })
+/******/ ]);

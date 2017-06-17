@@ -1,6 +1,6 @@
 /**
- * a console tools for brower cannot console 
- * you can print log and look the cookies ,request .localstorge etc.
+ * console for xunlei client
+ * you can print log  and look the cookies.
  * 
  * the pop z-index is 10000 please be careful;
  * use guide:
@@ -25,9 +25,10 @@ window.jConsole = (function() {
         EMPTY: "result empty"
     };
 
-    var styleStr = ".f-t-idn{text-indent:20px}.f-t-idn2{text-indent:40px}.t-con-pop{position:fixed;width:100%;bottom:0;left:0;background:#f8f8f8;font-size:14px;color:#3a4149;z-index:10000}.t-con-pop div,span,p,a{margin:0;padding:0}.nav-item{height:28px;line-height:28px;display:inline-block;width:120px;text-align:center}.nav-item:hover{cursor:pointer;background:#d1d2d1}.nav-act{border-bottom:solid 2px #2196F3}.nav-close{font-size:20px;float:right;margin-right:10px;cursor:pointer}.body-item{height:300px;overflow-y:scroll}.t-con-top{border-top:solid 1px #b6b6b6;height:4px;cursor:n-resize;background:#e0e2e7}.t-con-nav{background:#e0e2e7}.t-net-nav{display:inline-block;width:160px;padding:0 5px;text-align:cnter;border-left:1px solid #d5d3d3}.j-stor-ipt{width:120px}.j-stor-del{color:red;float:right;cursor:pointer}.t-net-item,.t-tim-item{display:inline-block;width:160px;max-width:960px;padding:0 5px;border-left:1px solid #d5d3d3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}.msg-item{border-bottom:solid 1px #d5d3d3;min-height:20px;line-height:20px;padding-left:10px}.u-ipt{width:120px}.u-ipt:focus{outline:none}.msg-info{background:#7bf77b}.msg-warn{background:#ffe400}.msg-err{background:#ED6666}";
+    var styleStr = "";
     //var tpl = '<div id=j-con-nav class=t-con-nav><span class="nav-item nav-act" idx=console>console</span><span class=nav-item idx=cookie>cookie</span><span id=j-item-search class=nav-item style="display: none;"><input type=text id=j-ck-search class=u-ipt placeholder="查询cookie,回车提交"></span><span class=nav-close idx=close>x</span></div><div id=j-con-console class="body-item j-con-body"></div><div id=j-con-cookie class="body-item j-con-body" style="display: none;"></div>';
-    var tpl = '<div id=j-con-top class=t-con-top></div><div id=j-con-nav class=t-con-nav><span class="nav-item nav-act" idx=console>console</span><span class=nav-item idx=cookie>cookie</span><span class=nav-close idx=close>x</span><span class=nav-item id=j-nav-net idx=network style="display: none;">network</span><span class=nav-item id=j-nav-timing idx=timing style="display: none;">timing</span><span class=nav-item id=j-nav-storage idx=storage>localStorage</span><span id=j-item-search style="display: none;"><input type=text id=j-ck-search class=u-ipt placeholder="查询cookie,回车提交"></span></div><div id=j-con-console class="body-item j-con-body"></div><div id=j-con-cookie class="body-item j-con-body" style="display: none;"></div><div id=j-con-network class="body-item j-con-body" style="display: none;"></div><div id=j-con-timing class="body-item j-con-body" style="display: none;"></div><div id=j-con-storage class="body-item j-con-body" style="display: none;"></div>';
+
+    var tpl = "";
     var util = {
         log: function(msg) {
             console.log && console.log(msg);
@@ -140,13 +141,6 @@ window.jConsole = (function() {
                 return;
             }
             dom.attachEvent("on" + type, handler);
-        },
-        queryEl: function() {
-
-        },
-        getElById: function(par, idStr) {
-            par = par || document;
-            return par.getElementById(idStr);
         }
     };
 
@@ -170,12 +164,12 @@ window.jConsole = (function() {
             return this;
         },
         showMsg: function(msg, type) {
-            if ("undefined" === typeof msg || "" === msg) {
+            if (!msg) {
                 util.log("showMsg param invalid!");
                 return;
             }
 
-            var str = util.getElById(null, "j-con-console").innerHTML;
+            var str = document.getElementById("j-con-console").innerHTML;
             var def = '<p class="msg-item">' + msg + '</p>';
             if ("warn" === type) {
                 def = '<p class="msg-item msg-warn">' + msg + '</p>';
@@ -184,15 +178,15 @@ window.jConsole = (function() {
             } else if ("info" === type) {
                 def = '<p class="msg-item msg-info">' + msg + '</p>';
             }
-            util.getElById(null, "j-con-console").innerHTML = str + def;
+            document.getElementById("j-con-console").innerHTML = str + def;
         },
         close: function() {
             this.cfg.status = false;
-            util.hideDom(util.getElById(null, "j-thunder-con"));
+            util.hideDom(document.getElementById("j-thunder-con"));
         },
         open: function() {
             this.cfg.status = true;
-            util.showDom(util.getElById(null, "j-thunder-con"));
+            util.showDom(document.getElementById("j-thunder-con"));
         },
         getCookies: function() {
             var ck = document.cookie || "";
@@ -206,32 +200,32 @@ window.jConsole = (function() {
         },
         showCookPage: function() {
             util.hideDoms(document.getElementsByClassName("j-con-body"));
-            util.getElById(null, "j-con-cookie").innerHTML = this.getCookies() || "no cookie";
-            util.showDom(util.getElById(null, "j-con-cookie"));
-            util.showDom(util.getElById(null, "j-item-search"), 1);
-            util.getElById(null, "j-ck-search").value = "";
+            document.getElementById("j-con-cookie").innerHTML = this.getCookies() || "no cookie";
+            util.showDom(document.getElementById("j-con-cookie"));
+            util.showDom(document.getElementById("j-item-search"), 1);
+            document.getElementById("j-ck-search").value = "";
         },
         hideDoms: function() {
             util.hideDoms(document.getElementsByClassName("j-con-body"));
-            util.hideDom(util.getElById(null, "j-item-search"));
+            util.hideDom(document.getElementById("j-item-search"));
         },
         showConsPage: function() {
             this.hideDoms();
-            util.showDom(util.getElById(null, "j-con-console"));
+            util.showDom(document.getElementById("j-con-console"));
         },
         showStorPage: function() {
             this.hideDoms();
-            util.showDom(util.getElById(null, "j-con-storage"));
-            var str = '<p class="msg-item"><span class="t-tim-item">key</span><span class="t-tim-item">value（双击修改）</span></p>';
+            util.showDom(document.getElementById("j-con-storage"));
+            var str = '<p class="msg-item"><span class="t-tim-item">key</span><span class="t-tim-item">value（点击修改）</span></p>';
             for (var prop in window.localStorage) {
                 str += '<p class="msg-item"><span class="t-tim-item">' + prop + '<i class="j-stor-del" key=' + prop + '>delete</i></span><span class="t-tim-item j-stor-val">' + localStorage.getItem(prop) + '</span><span class="t-tim-item j-stor-iptwrap" style="display: none;"><input type="text" class="u-ipt j-stor-ipt" class="u-ipt" placeholder="回车提交" key=' + prop + '></span></p>';
             }
             str += '<p class="msg-item"><span class="t-tim-item"><input type="text" id="j-stor-key" class="u-ipt" placeholder="key"></span><span class="t-tim-item"><input type="text" id="j-add-ipt" class="u-ipt" placeholder="value 回车提交"></span></p>';
-            util.getElById(null, "j-con-storage").innerHTML = str;
+            document.getElementById("j-con-storage").innerHTML = str;
         },
         showTimingPage: function() {
             this.hideDoms();
-            util.showDom(util.getElById(null, "j-con-timing"));
+            util.showDom(document.getElementById("j-con-timing"));
             var t = performance.timing;
             var arr = [{
                 name: "loadPage",
@@ -261,18 +255,17 @@ window.jConsole = (function() {
                     '</span><span title=' + t.val + ' class="t-net-item">' + t.val +
                     '</p>';
             }
-            util.getElById(null, "j-con-timing").innerHTML = str;
+            document.getElementById("j-con-timing").innerHTML = str;
         },
         showNetPage: function() {
             this.hideDoms();
-            util.showDom(util.getElById(null, "j-con-network"));
+            util.showDom(document.getElementById("j-con-network"));
             var arr = performance.getEntries();
             var str = '<p class="msg-item">' +
                 '<span class="t-net-nav">name</span>' +
-                '<span class="t-net-nav">type</span>' +
-                '<span class="t-net-nav">dns time</span>' +
-                '<span class="t-net-nav">tcp connect time</span>' +
-                '<span class="t-net-nav">waiting time</span>' +
+                '<span class="t-net-nav">dns</span>' +
+                '<span class="t-net-nav">tcp connect</span>' +
+                '<span class="t-net-nav">waiting</span>' +
                 '</p>';
             for (var i = 0, len = arr.length; i < len; i++) {
                 var t = arr[i];
@@ -282,20 +275,19 @@ window.jConsole = (function() {
                 var tcptm = (t.connectEnd - t.connectStart).toFixed(0);
                 var dnstm = (t.domainLookupStart - t.domainLookupEnd).toFixed(0);
                 //var domEventTm = t.domContentLoadedEventEnd - t.domContentLoadedEventStart;
-                str += '<p class="msg-item"><span title=' + name + ' class="t-net-item">' + name.split("/").slice(-1) +
-                    '</span><span title=' + type + ' class="t-net-item">' + type +
-                    '</span><span title=' + dnstm + ' class="t-net-item">' + dnstm +
-                    '</span><span title=' + tcptm + ' class="t-net-item">' + tcptm +
-                    '</span><span title=' + tm + ' class="t-net-item">' + tm + '</span></p>';
+                str += '<p class="msg-item"><span class="t-net-item">' + name.split("/").slice(-1) +
+                    '</span><span class="t-net-item">' + dnstm +
+                    '</span><span class="t-net-item">' + tcptm +
+                    '</span><span class="t-net-item">' + tm + '</span></p>';
             }
-            util.getElById(null, "j-con-network").innerHTML = str;
+            document.getElementById("j-con-network").innerHTML = str;
         },
         updateCookPage: function(val) {
-            util.getElById(null, "j-con-cookie").innerHTML = util.getCookie(val) || CONS.EMPTY;
+            document.getElementById("j-con-cookie").innerHTML = util.getCookie(val) || CONS.EMPTY;
         },
         bindUI: function() {
             var that = this;
-            var navDom = util.getElById(null, "j-con-nav");
+            var navDom = document.getElementById("j-con-nav");
             var bdDoms = document.getElementsByClassName("j-con-body");
             var bdH = bdDoms[0].offsetHeight;
             util.addEvent(navDom, "click", function(e) {
@@ -336,25 +328,6 @@ window.jConsole = (function() {
                     return;
                 }
             });
-            var tDom = util.getElById(null, "j-con-top");
-            tDom.onmousedown = function(e) {
-                var e = e || window.event,
-                    tag = e.target || e.srcElement;
-                var pY = e.pageY || e.y;
-                console.log("pY:" + pY);
-                document.onmousemove = function(e) {
-                    var e = e || window.event;
-                    var pY2 = e.pageY || e.y;
-                    console.log("移动距离:" + (pY2 - pY));
-                    setBdHeight(pY - pY2);
-                }
-                document.onmouseup = function() {
-                    console.log("onmouseup:");
-                    document.onmousemove = null;
-                }
-
-            }
-
             //F12 to controll console's open and close 
             document.onkeydown = function(e) {
                     var e = e || window.event;
@@ -367,10 +340,10 @@ window.jConsole = (function() {
                     }
                 }
                 //search cookie
-            util.getElById(null, "j-ck-search").onkeydown = function(e) {
+            document.getElementById("j-ck-search").onkeydown = function(e) {
                     var e = e || window.event;
                     if (13 === e.keyCode) {
-                        var key = util.getElById(null, "j-ck-search").value;
+                        var key = document.getElementById("j-ck-search").value;
                         if ("" === key) {
                             that.showCookPage();
                             return;
@@ -378,28 +351,21 @@ window.jConsole = (function() {
                         that.updateCookPage(key);
                     }
                 }
-                //localstorage 
-            util.getElById(null, "j-con-storage").ondblclick = function(e) {
-                var e = e || window.event,
-                    tar = e.target || e.srcElement;
-                if (tar.className.indexOf("j-stor-val") > -1) {
-                    util.hideDoms(document.getElementsByClassName("j-stor-iptwrap"));
-                    util.showDom(tar.nextSibling, 1);
-                }
-            }
-            util.getElById(null, "j-con-storage").onclick = function(e) {
+
+            document.getElementById("j-con-storage").onclick = function(e) {
                 var e = e || window.event,
                     tar = e.target || e.srcElement;
                 var pDom = tar.parentNode.parentNode;
                 if (tar.className.indexOf("j-stor-del") > -1) {
                     pDom.parentNode.removeChild(pDom);
                     window.localStorage.removeItem(tar.getAttribute("key"));
-                } else if (tar.className.indexOf("j-add-sub") > -1) {
-
+                } else if (tar.className.indexOf("j-stor-val") > -1) {
+                    util.hideDoms(document.getElementsByClassName("j-stor-iptwrap"));
+                    util.showDom(tar.nextSibling, 1);
                 }
             }
 
-            util.getElById(null, "j-con-storage").onkeydown = function(e) {
+            document.getElementById("j-con-storage").onkeydown = function(e) {
                 var e = e || window.event,
                     tar = e.target || e.srcElement;
                 if (13 === e.keyCode && tar.className.indexOf("j-stor-ipt") > -1) {
@@ -412,7 +378,7 @@ window.jConsole = (function() {
                     }, 0);
                 } else if (13 === e.keyCode && tar.id.indexOf("j-add-ipt") > -1) {
                     setTimeout(function() {
-                        var key = util.getElById(null, "j-stor-key").value;
+                        var key = document.getElementById("j-stor-key").value;
                         var val = tar.value;
                         window.localStorage.setItem(key, val);
                         var pDom = tar.parentNode.parentNode;
@@ -434,16 +400,16 @@ window.jConsole = (function() {
             }
         },
         renderUI: function() {
-            util.loadCssCode(styleStr);
+            if (window.performance) {
+                util.showDom(document.getElementById("j-nav-net"), 1);
+                util.showDom(document.getElementById("j-nav-timing"), 1);
+            }
+            /*util.loadCssCode(styleStr);
             var consDom = document.createElement("div");
             consDom.id = "j-thunder-con";
             consDom.className = "t-con-pop";
             consDom.innerHTML = tpl;
-            document.body.appendChild(consDom);
-            if (window.performance) {
-                util.showDom(util.getElById(null, "j-nav-net"), 1);
-                util.showDom(util.getElById(null, "j-nav-timing"), 1);
-            }
+            document.body.appendChild(consDom);*/
         }
     };
 
