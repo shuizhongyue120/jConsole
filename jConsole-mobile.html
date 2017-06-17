@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>离线空间</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+    .f-t-idn {
+        text-indent: 20px;
+    }
+    
+    .f-t-idn2 {
+        text-indent: 40px;
+    }
+    
+    .t-con-pop {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        background: #f8f8f8;
+        font-size: 14px;
+        color: #3a4149;
+        z-index: 10000
+    }
+    
+    .t-con-pop div,
+    span,
+    p,
+    a {
+        margin: 0;
+        padding: 0
+    }
+    
+    .t-con-nav {
+        overflow: hidden
+    }
+    
+    .nav-item {
+        height: 30px;
+        line-height: 30px;
+        display: inline-block;
+        width: 52px;
+        text-align: center
+    }
+    
+    .nav-item:hover {
+        cursor: pointer;
+        background: #d1d2d1
+    }
+    
+    .nav-act {
+        border-bottom: solid 2px #2196F3
+    }
+    
+    .nav-close {
+        font-size: 20px;
+        float: right;
+        margin-right: 10px;
+        cursor: pointer
+    }
+    
+    .body-item {
+        height: 240px;
+        overflow-y: scroll
+    }
+    
+    .t-con-top {
+        border-top: solid 1px #b6b6b6;
+        height: 4px;
+        cursor: n-resize;
+        background: #e0e2e7;
+    }
+    
+    .t-con-nav {
+        background: #e0e2e7;
+    }
+    
+    .t-net-nav {
+        display: inline-block;
+        width: 80px;
+        padding: 0 5px;
+        text-align: cnter;
+        border-left: 1px solid #d5d3d3;
+    }
+    
+    .j-stor-ipt {
+        width: 60px;
+    }
+    
+    .j-stor-del {
+        color: red;
+        float: right;
+        cursor: pointer;
+    }
+    
+    .t-net-item,
+    .t-tim-item {
+        display: inline-block;
+        width: 80px;
+        max-width: 960px;
+        padding: 0 5px;
+        border-left: 1px solid #d5d3d3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
+    }
+    
+    .msg-item {
+        border-bottom: solid 1px #d5d3d3;
+        height: 26px;
+        line-height: 26px;
+        padding-left: 10px
+    }
+    
+    .u-ipt {
+        width: 100px;
+    }
+    
+    .u-ipt:focus {
+        outline: none
+    }
+    
+    .msg-info {
+        background: #7bf77b
+    }
+    
+    .msg-warn {
+        background: #ffe400
+    }
+    
+    .msg-err {
+        background: #ED6666
+    }
+    
+    #j-ck-search {
+        position: absolute;
+        top: 34px;
+        right: 20px;
+    }
+    
+    @keyframes myfirst {
+        from {
+            transform: translateY(0%)
+        }
+        to {
+            transform: translateY(100%)
+        }
+    }
+    
+    @-webkit-keyframes myfirst {
+        from {
+            transform: translateY(0%)
+        }
+        to {
+            transform: translateY(100%)
+        }
+    }
+    
+    #j-thunder-con {
+        transform: translateY(100%);
+        animation: myfirst 2s;
+        -webkit-animation: myfirst 2s;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="login_tips">
+            <span class="ico_login"></span>
+            <p class="txt_login">咦，你还没登录哦</p>
+            <a href="#" class="btn_login">立即登录</a>
+        </div>
+    </div>
+    <div id="j-thunder-con" class="t-con-pop">
+        <div id=j-con-nav class=t-con-nav>
+            <span class="nav-item nav-act" idx="console">console</span><span class=nav-item idx="cookie">cookie</span><span class=nav-close idx=close>x</span>
+            <span class="nav-item" id="j-nav-net" idx="network" style="display: none;">network</span>
+            <span class="nav-item" id="j-nav-timing" idx="timing" style="display: none;">timing</span>
+            <span class="nav-item" id="j-nav-storage" idx="storage">storage</span>
+            <span id="j-item-search" style="display: none;"><input type=text id="j-ck-search" class="u-ipt" placeholder="查询cookie,回车提交"></span>
+        </div>
+        <div id="j-con-console" class="body-item j-con-body"></div>
+        <div id="j-con-cookie" class="body-item j-con-body" style="display: none;">
+        </div>
+        <div id="j-con-network" class="body-item j-con-body" style="display: none;"></div>
+        <div id="j-con-timing" class="body-item j-con-body" style="display: none;"></div>
+        <div id="j-con-storage" class="body-item j-con-body" style="display: none;"></div>
+    </div>
+    <script src="./test.js"></script>
+    <script src="./test2.js"></script>
+    <script src="./jConsole-mobile.js"></script>
+    <script>
+    jConsole.log("log jConsole");
+    jConsole.info("info jConsole");
+    jConsole.warn("warn jConsole");
+    jConsole.warn("warn jConsole");
+    jConsole.error("error jConsole");
+    </script>
+</body>
+
+</html>

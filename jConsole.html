@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jConsole</title>
+    <link rel="shortcut icon" href="http://lixian.vip.xunlei.com/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="green" style="background: #F5F5F5;height: 400px; padding-left: 20px">
+        <p>console for xunlei client</p>
+        <br>
+        <p>you can print log and look the cookies.</p>
+        <p>use F12 to open and close console pop.</p>
+        <br>
+        <p>the pop z-index is 10000, please pay attention.</p>
+        <br>
+        <p>use guide:</p>
+        <p class="f-t-idn">1. script src this file </p>
+        <p class="f-t-idn">2. write jConsole.log("xxxx") in your code,just like console.log("xxxx");</p>
+        <p class="f-t-idn">3. support 4 interface api:</p>
+        <p class="f-t-idn2">jConsole.log is same to console.log</p>
+        <p class="f-t-idn2">jConsole.info is same to console.info </p>
+        <p class="f-t-idn2">jConsole.warn is same to console.warn</p>
+        <p class="f-t-idn2">jConsole.error is same to console.error</p>
+    </div>
+    <div class="green" style="background: green;height: 400px;">
+        <img src="./img/bg_login.png" alt="">
+    </div>
+
+    <script src="./test.js"></script>
+    <script src="./test2.js"></script>
+    <script src="./jConsole-1.0.js"></script>
+    <script>
+    jConsole.log("log jConsole");
+    jConsole.info("info jConsole");
+    jConsole.warn("warn jConsole");
+    jConsole.warn("warn jConsole");
+    jConsole.error("error jConsole");
+    jConsole.error("error324234 jConsole");
+    </script>
+</body>
+
+</html>
