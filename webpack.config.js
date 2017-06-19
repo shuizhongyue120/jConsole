@@ -15,6 +15,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin"); //css 插件
 //contenthash 适用于css
 module.exports = {
     entry: {
+        jConsole:"./jConsole.js",
         index: "./index.js" //模块1
     },
     output: {
