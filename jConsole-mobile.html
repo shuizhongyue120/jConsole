@@ -151,7 +151,7 @@
         }
     }
     
-    @-webkit-keyframes myfirst {
+    @-webkit-keyframes tclose {
         from {
             transform: translateY(0%)
         }
@@ -160,10 +160,37 @@
         }
     }
     
-    #j-thunder-con {
+    @-webkit-keyframes topen {
+        from {
+            transform: translateY(100%)
+        }
+        to {
+            transform: translateY(0%)
+        }
+    }
+    
+    .cont_close {
         transform: translateY(100%);
-        animation: myfirst 2s;
-        -webkit-animation: myfirst 2s;
+        animation: tclose 1.5s;
+        -webkit-animation: tclose 1.5s;
+    }
+    
+    .cont_open {
+        transform: translateY(0%);
+        animation: topen 1.5s;
+        -webkit-animation: topen 1.5s;
+    }
+    
+    .show-btn {
+        display: none;
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background: #7bf77b;
     }
     </style>
 </head>
@@ -177,23 +204,26 @@
         </div>
     </div>
     <div id="j-thunder-con" class="t-con-pop">
-        <div id=j-con-nav class=t-con-nav>
-            <span class="nav-item nav-act" idx="console">console</span><span class=nav-item idx="cookie">cookie</span><span class=nav-close idx=close>x</span>
-            <span class="nav-item" id="j-nav-net" idx="network" style="display: none;">network</span>
-            <span class="nav-item" id="j-nav-timing" idx="timing" style="display: none;">timing</span>
-            <span class="nav-item" id="j-nav-storage" idx="storage">storage</span>
-            <span id="j-item-search" style="display: none;"><input type=text id="j-ck-search" class="u-ipt" placeholder="查询cookie,回车提交"></span>
+        <span id="j-thunder-btn" class="show-btn">show</span>
+        <div id="j-thunder-main">
+            <div id=j-con-nav class=t-con-nav>
+                <span class="nav-item nav-act" idx="console">console</span><span class=nav-item idx="cookie">cookie</span><span class=nav-close idx=close>x</span>
+                <span class="nav-item" id="j-nav-net" idx="network" style="display: none;">network</span>
+                <span class="nav-item" id="j-nav-timing" idx="timing" style="display: none;">timing</span>
+                <span class="nav-item" id="j-nav-storage" idx="storage">storage</span>
+                <span id="j-item-search" style="display: none;"><input type=text id="j-ck-search" class="u-ipt" placeholder="查询cookie,回车提交"></span>
+            </div>
+            <div id="j-con-console" class="body-item j-con-body"></div>
+            <div id="j-con-cookie" class="body-item j-con-body" style="display: none;">
+            </div>
+            <div id="j-con-network" class="body-item j-con-body" style="display: none;"></div>
+            <div id="j-con-timing" class="body-item j-con-body" style="display: none;"></div>
+            <div id="j-con-storage" class="body-item j-con-body" style="display: none;"></div>
         </div>
-        <div id="j-con-console" class="body-item j-con-body"></div>
-        <div id="j-con-cookie" class="body-item j-con-body" style="display: none;">
-        </div>
-        <div id="j-con-network" class="body-item j-con-body" style="display: none;"></div>
-        <div id="j-con-timing" class="body-item j-con-body" style="display: none;"></div>
-        <div id="j-con-storage" class="body-item j-con-body" style="display: none;"></div>
     </div>
     <script src="./test.js"></script>
     <script src="./test2.js"></script>
-    <script src="./jConsole-mobile.js"></script>
+    <script src="./index-mobile.js"></script>
     <script>
     jConsole.log("log jConsole");
     jConsole.info("info jConsole");

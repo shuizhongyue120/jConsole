@@ -26,9 +26,8 @@ window.jConsole = (function() {
     };
 
     var styleStr = "";
-    //var tpl = '<div id=j-con-nav class=t-con-nav><span class="nav-item nav-act" idx=console>console</span><span class=nav-item idx=cookie>cookie</span><span id=j-item-search class=nav-item style="display: none;"><input type=text id=j-ck-search class=u-ipt placeholder="查询cookie,回车提交"></span><span class=nav-close idx=close>x</span></div><div id=j-con-console class="body-item j-con-body"></div><div id=j-con-cookie class="body-item j-con-body" style="display: none;"></div>';
+    var tpl = '<div id=j-con-nav class=t-con-nav><span class="nav-item nav-act" idx=console>console</span><span class=nav-item idx=cookie>cookie</span><span id=j-item-search class=nav-item style="display: none;"><input type=text id=j-ck-search class=u-ipt placeholder="查询cookie,回车提交"></span><span class=nav-close idx=close>x</span></div><div id=j-con-console class="body-item j-con-body"></div><div id=j-con-cookie class="body-item j-con-body" style="display: none;"></div>';
 
-    var tpl = "";
     var util = {
         log: function(msg) {
             console.log && console.log(msg);
@@ -182,15 +181,11 @@ window.jConsole = (function() {
         },
         close: function() {
             this.cfg.status = false;
-            util.removeCls(document.getElementById("j-thunder-main"), "cont_open");
-            util.addCls(document.getElementById("j-thunder-main"), "cont_close");
-            util.showDom(document.getElementById("j-thunder-btn"), 1);
+            util.hideDom(document.getElementById("j-thunder-con"));
         },
         open: function() {
             this.cfg.status = true;
-            util.removeCls(document.getElementById("j-thunder-main"), "cont_close");
-            util.addCls(document.getElementById("j-thunder-main"), "cont_open");
-            util.hideDom(document.getElementById("j-thunder-btn"));
+            util.showDom(document.getElementById("j-thunder-con"));
         },
         getCookies: function() {
             var ck = document.cookie || "";
@@ -332,22 +327,29 @@ window.jConsole = (function() {
                     return;
                 }
             });
-
-            document.getElementById("j-thunder-btn").onclick = function(e) {
-                    that.open();
+            //F12 to controll console's open and close 
+            document.onkeydown = function(e) {
+                    var e = e || window.event;
+                    if (123 === e.keyCode) {
+                        if (that.cfg.status) {
+                            that.close();
+                            return;
+                        }
+                        that.open();
+                    }
                 }
                 //search cookie
             document.getElementById("j-ck-search").onkeydown = function(e) {
-                var e = e || window.event;
-                if (13 === e.keyCode) {
-                    var key = document.getElementById("j-ck-search").value;
-                    if ("" === key) {
-                        that.showCookPage();
-                        return;
+                    var e = e || window.event;
+                    if (13 === e.keyCode) {
+                        var key = document.getElementById("j-ck-search").value;
+                        if ("" === key) {
+                            that.showCookPage();
+                            return;
+                        }
+                        that.updateCookPage(key);
                     }
-                    that.updateCookPage(key);
                 }
-            }
 
             document.getElementById("j-con-storage").onclick = function(e) {
                 var e = e || window.event,
@@ -401,12 +403,12 @@ window.jConsole = (function() {
                 util.showDom(document.getElementById("j-nav-net"), 1);
                 util.showDom(document.getElementById("j-nav-timing"), 1);
             }
-            /*util.loadCssCode(styleStr);
+            util.loadCssCode(styleStr);
             var consDom = document.createElement("div");
             consDom.id = "j-thunder-con";
             consDom.className = "t-con-pop";
             consDom.innerHTML = tpl;
-            document.body.appendChild(consDom);*/
+            document.body.appendChild(consDom);
         }
     };
 

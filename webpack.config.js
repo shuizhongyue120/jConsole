@@ -7,16 +7,17 @@ var BUILD_ROOT_PATH = "build/"; //html输出路径
 console.log("\n BUILD_ROOT_PATH:" + BUILD_ROOT_PATH);
 
 var JS_PATH = path.resolve(__dirname, "build/js"); //js输出路径
-var CSS_PATH = path.resolve(__dirname, "build/css"); //css输出路径
 var HtmlWebpackPlugin = require("html-webpack-plugin"); // Html 插件 文件处理
-var ExtractTextPlugin = require("extract-text-webpack-plugin"); //css 插件
+
 
 //chunkhash  文件的唯一标识 适用于js
 //contenthash 适用于css
 module.exports = {
     entry: {
-        jConsole:"./jConsole.js",
-        index: "./index.js" //模块1
+        jConsole: "./jConsole.js",
+        jConsoleMobile: "./jConsole-mobile.js",
+        index: "./index.js", //模块1
+        index2: "./index-mobile.js" //模块2
     },
     output: {
         path: BUILD_ROOT_PATH, // 图片和 JS, CSS会打包到这里来 这是一个绝对路径
@@ -24,19 +25,7 @@ module.exports = {
         publicPath: ""
     },
     module: {
-        rules: [{
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: "css-loader"
-            })
-        }, {
-            test: /\.(png|jpg|gif|svg)$/,
-            loader: "file-loader",
-            options: {
-                name: "/img/[name].[ext]?[hash:8]"
-            }
-        }]
+        rules: []
     },
     resolve: {},
     /*    devServer: {
@@ -48,12 +37,18 @@ module.exports = {
         },*/
     //devtool: '#eval-source-map',
     plugins: [
-        new ExtractTextPlugin('css/[name].css?v=[contenthash:8]'), //css输出的路径 相对 BUILD_ROOT_PATH
         new HtmlWebpackPlugin({
             filename: "index.html",
             template: "index.html", //html模板；默认生成的可能不符合要求
             // template: 'html-withimg-loader!' + 'index.html'
             chunks: ["index"], //页面引用的js文件列表[com,index,detail]等等(可以直接写文件路径)
+            //hash: true //开启后 页面引用的js为:  xxx.js?+20位的hash
+        }),
+        new HtmlWebpackPlugin({
+            filename: "jConsole-mobile.html",
+            template: "jConsole-mobile.html", //html模板；默认生成的可能不符合要求
+            // template: 'html-withimg-loader!' + 'index.html'
+            chunks: ["index2"], //页面引用的js文件列表[com,index,detail]等等(可以直接写文件路径)
             //hash: true //开启后 页面引用的js为:  xxx.js?+20位的hash
         })
     ]
