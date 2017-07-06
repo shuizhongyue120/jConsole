@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>离线空间</title>
-    <link rel="stylesheet" href="css/main.css">
     <!-- <style>
     .f-t-idn {
         text-indent: 20px;
@@ -63,7 +62,7 @@
     }
     
     .body-item {
-        height: 240px;
+        height: 160px;
         overflow-y: scroll
     }
     
@@ -80,7 +79,7 @@
     
     .t-net-nav {
         display: inline-block;
-        width: 80px;
+        width: 20%;
         padding: 0 5px;
         text-align: cnter;
         border-left: 1px solid #d5d3d3;
@@ -99,8 +98,7 @@
     .t-net-item,
     .t-tim-item {
         display: inline-block;
-        width: 80px;
-        max-width: 960px;
+        width: 20%;
         padding: 0 5px;
         border-left: 1px solid #d5d3d3;
         overflow: hidden;
@@ -142,43 +140,96 @@
         right: 20px;
     }
     
-    @keyframes myfirst {
+    @keyframes tclose {
         from {
-            transform: translateY(0%)
+            transform: translateY(0%);
+            -webkit-transform:translateY(0%);
+            -o-transform:translateY(0%);
         }
         to {
-            transform: translateY(100%)
+             transform: translateY(100%);
+            -webkit-transform:translateY(100%);
+            -o-transform:translateY(100%);
         }
     }
     
     @-webkit-keyframes tclose {
         from {
-            transform: translateY(0%)
+             transform: translateY(0%);
+            -webkit-transform:translateY(0%);
+            -o-transform:translateY(0%);
         }
         to {
-            transform: translateY(100%)
+            transform: translateY(100%);
+            -webkit-transform:translateY(100%);
+            -o-transform:translateY(100%);
         }
     }
-    
-    @-webkit-keyframes topen {
+    @-o-keyframes tclose {
         from {
-            transform: translateY(100%)
+            transform: translateY(0%);
+            -webkit-transform:translateY(0%);
+            -o-transform:translateY(0%);
         }
         to {
-            transform: translateY(0%)
+            transform: translateY(100%);
+            -webkit-transform:translateY(100%);
+            -o-transform:translateY(100%);
+        }
+    }
+    @keyframes topen {
+        from {
+             transform: translateY(100%);
+            -webkit-transform:translateY(100%);
+            -o-transform:translateY(100%);
+        }
+        to {
+            transform: translateY(0%);
+            -webkit-transform:translateY(0%);
+            -o-transform:translateY(0%);
+        }
+    }
+    @-webkit-keyframes topen {
+        from {
+            transform: translateY(100%);
+            -webkit-transform:translateY(100%);
+            -o-transform:translateY(100%);
+        }
+        to {
+            transform: translateY(0%);
+            -webkit-transform:translateY(0%);
+            -o-transform:translateY(0%);
+        }
+    }
+    @-o-keyframes topen {
+        from {
+            transform: translateY(100%);
+            -webkit-transform:translateY(100%);
+            -o-transform:translateY(100%);
+        }
+        to {
+            transform: translateY(0%);
+            -webkit-transform:translateY(0%);
+            -o-transform:translateY(0%);
         }
     }
     
     .cont_close {
         transform: translateY(100%);
+        -webkit-transform:translateY(100%);
+        -o-transform:translateY(100%);
         animation: tclose 1s;
         -webkit-animation: tclose 1s;
+        -o-animation: tclose 1s;
     }
     
     .cont_open {
         transform: translateY(0%);
+        -webkit-transform:translateY(0%);
+        -o-transform:translateY(0%);
         animation: topen 1s;
         -webkit-animation: topen 1s;
+        -o-animation: topen 1s;
     }
     
     .show-btn {
@@ -196,13 +247,30 @@
 </head>
 
 <body>
-    <div class="wrap">
-        <div class="login_tips">
-            <span class="ico_login"></span>
-            <p class="txt_login">咦，你还没登录哦</p>
-            <a href="#" class="btn_login">立即登录</a>
-        </div>
+    <div class="green" style="background: #F5F5F5;height: 330px; padding-left: 20px">
+        <p>a console tools for brower cannot console</p>
+        <br>
+        <p>you can print log and look the cookies ,request .localstorge etc.</p>
+        <p>use F12 to open and close console pop.</p>
+        <br>
+        <p>the pop z-index is 10000, please pay attention.</p>
+        <br>
+        <p>use guide:</p>
+        <p class="f-t-idn">1. script src this file </p>
+        <p class="f-t-idn">2. write jConsole.log("xxxx") in your code,just like console.log("xxxx");</p>
+        <p class="f-t-idn">3. support 4 interface api:</p>
+        <p class="f-t-idn2">jConsole.log is same to console.log</p>
+        <p class="f-t-idn2">jConsole.info is same to console.info </p>
+        <p class="f-t-idn2">jConsole.warn is same to console.warn</p>
+        <p class="f-t-idn2">jConsole.error is same to console.error</p>
     </div>
+    <div class="green" style="background: green;height: 400px;">
+        <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" alt="">
+        <img src="http://xunlei.com/img/logo.png" alt="">
+    </div>
+    <!--本页引用的css,img,js等资源只是为了演示network功能 ；jconsole并不依赖这些资源-->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/fastclick/1.0.0/fastclick.js"></script>
     <!-- <div id="j-thunder-con" class="t-con-pop">
         <span id="j-thunder-btn" class="show-btn">show</span>
         <div id="j-thunder-main">
@@ -221,8 +289,8 @@
             <div id="j-con-storage" class="body-item j-con-body" style="display: none;"></div>
         </div>
     </div> -->
-    <script src="./index-mobile.js"></script>
-   <!--  <script>
+    <!-- <script src="./index-mobile.js"></script>
+    <script>
    jConsole.log("log jConsole");
    jConsole.info("info jConsole");
    jConsole.warn("warn jConsole");
