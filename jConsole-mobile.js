@@ -29,7 +29,7 @@ var styleStr =".f-t-idn{text-indent:20px}.f-t-idn2{text-indent:40px}.t-con-pop{p
 //var tpl = '<div id=j-con-nav class=t-con-nav><span class="nav-item nav-act" idx=console>console</span><span class=nav-item idx=cookie>cookie</span><span id=j-item-search class=nav-item style="display: none;"><input type=text id=j-ck-search class=u-ipt placeholder="查询cookie,回车提交"></span><span class=nav-close idx=close>x</span></div><div id=j-con-console class="body-item j-con-body"></div><div id=j-con-cookie class="body-item j-con-body" style="display: none;"></div>';
 
 var tpl = '<div id=j-thunder-con class=t-con-pop><span id=j-thunder-btn class=show-btn>show</span><div id=j-thunder-main><div id=j-con-nav class=t-con-nav><span class="nav-item nav-act" idx=console>console</span><span class=nav-item idx=cookie>cookie</span><span class=nav-close idx=close>x</span><span class=nav-item id=j-nav-net idx=network style="display: none;">network</span><span class=nav-item id=j-nav-timing idx=timing style="display: none;">timing</span><span class=nav-item id=j-nav-storage idx=storage>storage</span><span id=j-item-search style="display: none;"><input type=text id=j-ck-search class=u-ipt placeholder="查询cookie"></span></div><div id=j-con-console class="body-item j-con-body"></div><div id=j-con-cookie class="body-item j-con-body" style="display: none;"></div><div id=j-con-network class="body-item j-con-body" style="display: none;"></div><div id=j-con-timing class="body-item j-con-body" style="display: none;"></div><div id=j-con-storage class="body-item j-con-body" style="display: none;"></div></div></div>';
-var util = require("./util.js");
+var util = require("../lib/util.js");
 
 function jConsole(cfg) {
     if (this instanceof jConsole) {

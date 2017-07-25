@@ -1,6 +1,6 @@
 {
   "name": "jConsole",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "console",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "keywords": [
     "console"
   ],
-  "author": "jiaxiangjun",
+  "author": "kevin",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/shuizhongyue120/jConsole/issues"

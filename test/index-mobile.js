@@ -1,4 +1,3 @@
-    var jConsole = require("./jConsole-mobile.js");
 
     jConsole.log("log jConsole");
     jConsole.info("info jConsole");
